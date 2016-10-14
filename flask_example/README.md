@@ -18,7 +18,7 @@
 
 
 ## Introduction
-The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and google stock. The IBM stock price is updating every second.
+The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every second.
 The second view of this app shows the IBM prices over time as each time a query is performed the result is saved in the database.
 
 ## How to run this example
@@ -31,7 +31,7 @@ The second view of this app shows the IBM prices over time as each time a query 
 ```bash
 git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 ```
-- `cd` to the main directory and run
+- `cd` to the `flask_example` directory and run
 ```bash
 pip install -r requirements
 ```
@@ -103,7 +103,7 @@ When you careate a Route, you need to define which methods the browser can user 
 Flask uses [Jinja2](http://jinja.pocoo.org) templating engine. This is useful to perform some logic operations on our backend the return variables to the HTML files. 
 The `index` function in `views.py` returns a template called `index.html`.
 
-Notice that each template in the `tempates/example` folder, has the following structure:
+Notice that each template in the `templates/example` folder, has the following structure:
 ```
 {% extends "main/base.html" %}
 
@@ -150,7 +150,7 @@ Notice that control statements are written between `{% stmt %}` and variable nam
 ## SQLALCHEMY
 [SQLAlchemy](http://www.sqlalchemy.org) is the most common ORM for python. If you will use it correctly, it will make your life easier. 
 
-Instead of creating SQL tables and perform insert, deletions and update using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a pythonic way. 
+Instead of creating SQL tables and perform insert, deletions and update using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a Pythonic way. 
 
 The `models.py` defines a Ticker object as following
 ```python
