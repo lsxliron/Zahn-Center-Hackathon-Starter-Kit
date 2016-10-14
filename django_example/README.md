@@ -22,7 +22,7 @@
 
 ## Introduction
 [Django](https://www.djangoproject.com) is a highly scalable and well known web framework for python. 
-The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every second.
+The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every 5 seconds.
 The second view of this app shows the IBM prices over time as each time a query is performed the result is saved in the database.
 
 Django has a very good [tutorial](https://docs.djangoproject.com/en/1.10/intro/tutorial01/) (also VERY long) which explains everything you need to know about the framework. If you have time or want more detailed information I encourage you to read it. 
@@ -42,6 +42,9 @@ git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 pip install -r requirements.txt
 ```
 - cd to `django_example` directory and run the following commands
+- Edit the `DATABASES` variable `settings.py` and set the username and password to match you MySQL user.
+
+If you do not want to change it, I will assume that you have MySQL user with username `dev` and password `abcd1234`
 ```bash
 #Detect any migrations that occured in the database
 python manage.py makemigrations 

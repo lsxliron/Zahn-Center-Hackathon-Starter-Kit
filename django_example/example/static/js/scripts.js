@@ -27,5 +27,5 @@ $(document).ready(function(){
         $("#autoUpdate").text(answer)
       }
     })
-  }, 1000)
+  }, 5000)
 })

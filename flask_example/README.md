@@ -18,7 +18,7 @@
 
 
 ## Introduction
-The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every second.
+The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every 5 seconds.
 The second view of this app shows the IBM prices over time as each time a query is performed the result is saved in the database.
 
 ## How to run this example
@@ -37,12 +37,14 @@ pip install -r requirements.txt
 ```
 - Once the installation is done, open MySQL console and create a new database called `example`
 ```sql
-CREATE DATABASE example;
+CREATE DATABASE flask_example;
 ```
 - Edit the `SQLALCHEMY_DATABASE_URI` in `config.py` file. This is the *connection string* to the database. When using MySQL it has the following structure
 ```
 mysql://username:password@host/dbname
 ```
+If you do not want to change it, I will assume that you have MySQL user with username `dev` and password `abcd1234`
+
 - From the `flask_example` directory, run the following command in order to create the necessary tables in in your database
 ```bash
 python syncdb.py
