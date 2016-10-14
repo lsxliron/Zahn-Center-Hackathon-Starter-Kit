@@ -1034,7 +1034,7 @@ body .markdown-body
 <li><a href="#sqlalchemy">SQLALCHEMY</a></li>
 </ul>
 <h2 id="introduction"><a name="user-content-introduction" href="#introduction" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Introduction</h2>
-<p>The code in this directory is an example of a simple flask web server which uses <a href="https://github.com/lukaszbanasiak/yahoo-finance">yahoo_finance</a> to fetch stock prices. You can choose between Apple, Microsoft and google stock. The IBM stock price is updating every second.<br />
+<p>The code in this directory is an example of a simple flask web server which uses <a href="https://github.com/lukaszbanasiak/yahoo-finance">yahoo_finance</a> to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every second.<br />
 The second view of this app shows the IBM prices over time as each time a query is performed the result is saved in the database.</p>
 <h2 id="how-to-run-this-example"><a name="user-content-how-to-run-this-example" href="#how-to-run-this-example" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>How to run this example</h2>
 <h3 id="prerequisites"><a name="user-content-prerequisites" href="#prerequisites" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Prerequisites</h3>
@@ -1047,7 +1047,7 @@ The second view of this app shows the IBM prices over time as each time a query 
 <li>Clone this repository <br />
 <pre><code class="bash">git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 </code></pre></li>
-<li><code>cd</code> to the main directory and run<br />
+<li><code>cd</code> to the <code>flask_example</code> directory and run<br />
 <pre><code class="bash">pip install -r requirements
 </code></pre></li>
 <li>Once the installation is done, open MySQL console and create a new database called <code>example</code><br />
@@ -1088,7 +1088,12 @@ The second view of this app shows the IBM prices over time as each time a query 
 <h2 id="implementation-details"><a name="user-content-implementation-details" href="#implementation-details" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Implementation Details</h2>
 <p><strong>Note:</strong> If you read this part I assume you already went over the source code. There are some useful comments there.</p>
 <h3 id="project-initialization"><a name="user-content-project-initialization" href="#project-initialization" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Project Initialization</h3>
-<p>The <code>__init__</code> file contains the code that initialize the project. Make sure you read it since it is well documented and explains how to connect the app to your database.</p>
+<p>The <code>__init__</code> file contains the code that initialize the project. Make sure you read it since it is well documented and explains how to connect the app to your database.<br />
+For your convenience, create a <code>runserver.py</code> file in the root directory of the project with the following code<br />
+<pre><code class="python">from app import app
+app.run(debug=True, host='0.0.0.0', port=5000)
+</code></pre><br />
+This will allow you to update your <code>__init__.py</code> file while the app is running and will also resolve many path issues. Of course, you can change the function arguments as you want. </p>
 <h3 id="the-views"><a name="user-content-the-views" href="#the-views" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>The Views</h3>
 <p>This file contains the project logic. Notice that flask uses <em>Blueprints</em>. <br />
 <pre><code class="python">example_blueprint = Blueprint(__name__, &quot;example&quot;)
@@ -1103,7 +1108,7 @@ When you careate a Route, you need to define which methods the browser can user 
 <h3 id="templates"><a name="user-content-templates" href="#templates" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Templates</h3>
 <p>Flask uses <a href="http://jinja.pocoo.org">Jinja2</a> templating engine. This is useful to perform some logic operations on our backend the return variables to the HTML files. <br />
 The <code>index</code> function in <code>views.py</code> returns a template called <code>index.html</code>.</p>
-<p>Notice that each template in the <code>tempates/example</code> folder, has the following structure:<br />
+<p>Notice that each template in the <code>templates/example</code> folder, has the following structure:<br />
 <pre><code>{% extends &quot;main/base.html&quot; %}
 
 {% block content %}
@@ -1141,7 +1146,7 @@ The <code>index</code> function in <code>views.py</code> returns a template call
 <p>Notice that control statements are written between <code>{% stmt %}</code> and variable names are written as <code>{{ foo }}</code>.</p>
 <h2 id="sqlalchemy"><a name="user-content-sqlalchemy" href="#sqlalchemy" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>SQLALCHEMY</h2>
 <p><a href="http://www.sqlalchemy.org">SQLAlchemy</a> is the most common ORM for python. If you will use it correctly, it will make your life easier. </p>
-<p>Instead of creating SQL tables and perform insert, deletions and update using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a pythonic way. </p>
+<p>Instead of creating SQL tables and perform insert, deletions and update using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a Pythonic way. </p>
 <p>The <code>models.py</code> defines a Ticker object as following<br />
 <pre><code class="python">
 class Ticker(db.Model):

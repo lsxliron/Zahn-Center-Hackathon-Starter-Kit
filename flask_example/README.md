@@ -83,6 +83,14 @@ flask_example  //root directory
 ### Project Initialization
 The `__init__` file contains the code that initialize the project. Make sure you read it since it is well documented and explains how to connect the app to your database.
 
+For your own convenience, create a `runserver.py` file in the root directory of the project with the following code
+```python
+from app import app
+app.run(debug=True, host='0.0.0.0', port=5000)
+```
+
+This will allow you to update your `__init__.py` file while the app is running and will also resolve many path issues. Of course, you can change the function arguments as you want. 
+
 ### The Views
 This file contains the project logic. Notice that flask uses *Blueprints*. 
 ```python

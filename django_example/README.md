@@ -1,5 +1,25 @@
 # Django
 
+##Table of Contents
+
+* [Introduction](#introduction)
+* [How to run this example](#how-to-run-this-example)
+    * [Prerequisites](#prerequisites)
+    * [Installation](#installation)
+* [Project Structure](#project-structure)
+* [Implementation Details](#implementation-details)
+    * [Project Initialization](#project-initialization)
+    * [The Views](#the-views)
+    * [The URLs File](#the-urls-file)
+    * [Templates](#templates)
+    * [If statements](#if-statements)
+    * [For Loops](#for-loops)
+* [Django ORM](#django-orm)
+* [How To Start a Django Project](#how-to-start-a-django-project)
+  * [Create Project and App](#create-project-and-app)
+  * [Modify settings.py](#modify-settingspy)
+  * [Setup Your Database](#setup-your-database)
+
 ## Introduction
 [Django](https://www.djangoproject.com) is a highly scalable and well known web framework for python. 
 The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every second.
