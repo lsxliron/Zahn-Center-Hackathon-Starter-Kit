@@ -8,9 +8,7 @@ $(document).ready(function(){
       type:"post",
       data:JSON.stringify({ticker:ticker, store: false}),
       success: function(data){
-        console.log(data)
         var answer = "The price of " + data.name + ' stock is ' + data.price
-        console.log(answer)
         $("#answer").text(answer)
       }
     })
