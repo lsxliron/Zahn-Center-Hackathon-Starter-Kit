@@ -16,4 +16,4 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Now you can navigate to http://localhost:8000
+Now you can navigate to [http://localhost:8000](http://localhost:8000)

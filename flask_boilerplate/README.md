@@ -10,4 +10,4 @@ pip install -r requirements.txt
 python runserver.py
 ```
 
-Now you can navigate to http://localhost:5500
+Now you can navigate to [http://localhost:5500](http://localhost:5500)
