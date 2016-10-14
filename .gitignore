@@ -1,6 +1,9 @@
 .DS_Store
 *.pyc
+*.db
 README.html
 gh-md-toc
-flask_example/README.html
+django_boilerplate/README.html
 django_example/README.html
+flask_boilderplate/README.html
+flask_example/README.html

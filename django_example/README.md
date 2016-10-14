@@ -21,8 +21,8 @@
   * [Setup Your Database](#setup-your-database)
 
 ## Introduction
-[Django](https://www.djangoproject.com) is a highly scalable and well known web framework for python. 
-The code in this directory is an example of a simple flask web server which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every 5 seconds.
+[Django](https://www.djangoproject.com) is a highly scalable and well known web framework for Python. 
+The code in this directory is an example of a simple Django project which uses [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) to fetch stock prices. You can choose between Apple, Microsoft and Google stock. The IBM stock price is updating every 5 seconds.
 The second view of this app shows the IBM prices over time as each time a query is performed the result is saved in the database.
 
 Django has a very good [tutorial](https://docs.djangoproject.com/en/1.10/intro/tutorial01/) (also VERY long) which explains everything you need to know about the framework. If you have time or want more detailed information I encourage you to read it. 
@@ -41,12 +41,16 @@ git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 ```bash
 pip install -r requirements.txt
 ```
-- cd to `django_example` directory and run the following commands
-- Edit the `DATABASES` variable `settings.py` and set the username and password to match you MySQL user.
 
+- Edit the `DATABASES` variable `settings.py` and set the username and password to match you MySQL user.
 If you do not want to change it, I will assume that you have MySQL user with username `dev` and password `abcd1234`
+- Once the installation is done, open MySQL console and create a new database called `django_example`
+```sql
+CREATE DATABASE django_example;
+```
+- cd to `django_example` directory and run the following commands
 ```bash
-#Detect any migrations that occured in the database
+# Detect any migrations that occured in the database
 python manage.py makemigrations 
 # Apply migrations
 python manage.py migrate
@@ -90,7 +94,7 @@ To start a Django project, you must use the `django-admin` command:
 django-admin startproject project_name
 ```
 
-this will create a directory called `project_name` with the project settings in it. Django projects are build from apps. An app is a small piece of code that is in charge on one thing and one thing only. This way, you can write many micro services that will integrate into one meaningful thing.
+this will create a directory called `project_name` with the project settings in it. Django projects are built from apps. An app is a small piece of code that is in charge on one thing and one thing only. This way, you can write many micro services that will integrate into one meaningful thing.
 
 To create an app, you must use the `manage.py` file that the previous command created for you in the `project_name` directory
 ```bash
@@ -99,7 +103,7 @@ python manage.py startapp app_name
 
 ### The Views
 In the new app that we created in the last command, there is a file called `views.py` which will contain all our app logic. 
-Notice that the `getAnswer` function function returns a `JSON` response however `getTickerHistory` function return a template with some extra variables. Those variables will be available to us in the HTML file as we will see in the next sections.
+Notice that the `getAnswer` function returns a `JSON` response. However `getTickerHistory` function return a template with some extra variables. Those variables will be available to us in the HTML file as we will see in the next sections.
 The syntax for returning a template is 
 ```python
 return render(request, 'templates/example/template_name.html', {'foo':'bar', 'fiz': 'buz'})
@@ -107,15 +111,15 @@ return render(request, 'templates/example/template_name.html', {'foo':'bar', 'fi
 The dictionary in the third argument may have complex values like lists and dictionaries. 
 
 ### The URLs File
-In the project directory there is a file named `urls.py` which is in charge on all the available URLS and their functionality. After adding new views to our `views.py`  file, we have to set a URL for it so it will be available to the users. The URL structure in this file is as follows:
+In the project directory there is a file named `urls.py` which is in charge on all the available URLs and their functionality. After adding new views to our `views.py`  file, we have to set a URL for it so it will be available to the users. The URL structure in this file is as follows:
 ```python
 url(r'$^', example_views.index, name='home'),
 url(r'^tickerHistory', example_views.getTickerHistory, name='history')
 ```
-The first argument is a [regular expression](https://docs.python.org/2/library/re.html) which should match the URL. The second argument is the name of your function in the `views.py` file and the last argument is the view name. This name is important if you want to access it from an HTML form.
+The first argument is a [regular expression](https://docs.python.org/2/library/re.html) which should match the URL. The second argument is the name of your function in the `views.py` file and the last argument is the view name. The name argument is important if you want to access it from an HTML form.
 
 ### Templates
-Django has its own templating engine. This is useful to perform some logic operations on our backend the return variables to the HTML files. 
+Django has its own [templating engine](https://docs.djangoproject.com/en/1.10/topics/templates/.) This is useful to perform some logic operations on our backend the return variables to the HTML files. 
 The `index` function in `views.py` returns a template called `index.html`.
 Note that each app should contain its own `templates` directory. For example
 ```bash
@@ -201,6 +205,9 @@ b.save()
 result = Foo.objects.filter(bar='abc')
 ```
 
+### Django Shell
+Django provides us with a useful tool to play and test with our models. when your run `python manage.py shell`, you can import your model class. That way you can create, update and query for objects in your database. This is useful for testing and debugging.
+
 ## How To Start a Django Project
 ### Create Project and App
 From the *Project Initialization* section:
@@ -211,7 +218,7 @@ django-admin startproject project_name
 
 >this will create a directory called `project_name` with the project settings in it. Django projects are build from apps. An app is a small piece of code that is in charge on one thing and one thing only. This way, you can write many micro services that will integrate into one meaningful thing.
 
-> ?To create an app, you must use the `manage.py` file that the previous command created for you in the `project_name` directory
+> To create an app, you must use the `manage.py` file that the previous command created for you in the `project_name` directory
 ```bash
 python manage.py startapp app_name
 ```
@@ -232,11 +239,11 @@ INSTALLED_APPS = [
 ```
 
 ### Setup Your Database
-Django let you choose which database you want to use (SQLite, MySQL, PostreSQL). You will need to change the `DATABSES` variable your settings file accordingly. MySQL example:
+Django let you choose which database you want to use (SQLite, MySQL, PostgrSQL). You will need to change the `DATABSES` variable your settings file accordingly. MySQL example:
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql', # 
         'NAME': 'example', #Database name
         'USER': 'dev', # Username for MySQL
         'PASSWORD': 'password', # Password for the database
@@ -245,11 +252,16 @@ DATABASES = {
 }
 ```
 
+You can find more information about Django backends and configurations in the following links:
+
+- [PostgrSQL](https://docs.djangoproject.com/en/1.10/ref/databases/#postgresql-notes)
+- [MySQL](https://docs.djangoproject.com/en/1.10/ref/databases/#mysql-notes)
+- [SQLite](https://docs.djangoproject.com/en/1.10/ref/databases/#sqlite-notes)
 
 <hr />
 After you made the above changes, you should run the following from your project directory:
 ```bash
-#Detect any migrations that occured in the database
+# Detect any migrations that occured in the database
 python manage.py makemigrations 
 # Apply migrations
 python manage.py migrate

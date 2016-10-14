@@ -35,7 +35,7 @@ git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 ```bash
 pip install -r requirements.txt
 ```
-- Once the installation is done, open MySQL console and create a new database called `example`
+- Once the installation is done, open MySQL console and create a new database called `flask_example`
 ```sql
 CREATE DATABASE flask_example;
 ```
@@ -65,6 +65,7 @@ flask_example  //root directory
     |     |
     |     |--- example 
     |     |       |
+    |     |       |--- __init__.py // Python initialization file
     |     |       |-- views.py //contains the logic of the app
     |     |       
     |     |--- static // contains static files we want to serve such as
@@ -107,7 +108,7 @@ Notice that each function in `views.py` starts with following line
 @example_blueprint.route("/", methods=["GET"])
 ```
 This creates a *Route* to a function. Meaning, when the user will navigate to `www.example.com`, he will get to the route that in charge of `/`. 
-When you careate a Route, you need to define which methods the browser can user (GET, POST, etc.)
+When you create a Route, you need to define which methods the browser can user (GET, POST, etc.)
 
 ### Templates
 Flask uses [Jinja2](http://jinja.pocoo.org) templating engine. This is useful to perform some logic operations on our backend the return variables to the HTML files. 
@@ -160,7 +161,7 @@ Notice that control statements are written between `{% stmt %}` and variable nam
 ## SQLALCHEMY
 [SQLAlchemy](http://www.sqlalchemy.org) is the most common ORM for python. If you will use it correctly, it will make your life easier. 
 
-Instead of creating SQL tables and perform insert, deletions and update using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a Pythonic way. 
+Instead of creating SQL tables and perform insertions, deletions and updates using plain SQL, you can define a model which represents a table using Python. Then, you can perform SQL queries in a Pythonic way. 
 
 The `models.py` defines a Ticker object as following
 ```python
@@ -174,9 +175,9 @@ class Ticker(db.Model):
     db.PrimaryKeyConstraint(id)
 ```
 
-You can find more information on SQLAlchemy data types [here](http://docs.sqlalchemy.org/en/latest/core/type_basics.html)
+You can find more information on SQLAlchemy data types and their arguments [here](http://docs.sqlalchemy.org/en/latest/core/type_basics.html)
 
-The following is a very basic usage
+The following is a very basic usage of SQLAlchemy
 ```python
 
 from app import db
