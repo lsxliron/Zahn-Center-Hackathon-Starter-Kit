@@ -2,3 +2,5 @@
 *.pyc
 README.html
 gh-md-toc
+flask_example/README.html
+django_example/README.html
