@@ -263,8 +263,8 @@ In order to make all your project components to work in harmony, you will need t
 
 For your convenience, there is a boilerplate code for each framework:
 
- - [Django Boilerplate](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/django_boilerplate))
- - [Flask Boilerplate](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/flask_boilerplate))
+ - [Django Boilerplate](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/django_boilerplate)
+ - [Flask Boilerplate](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/flask_boilerplate)
 
 The two examples have the same functionality of fetching a stock price and displaying it in HTML page, as well as storing the prices in a database. Another functionality is showing a table with the previous prices. 
 
