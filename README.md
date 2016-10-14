@@ -11,11 +11,12 @@ Good luck,
 Liron Shimrony
 
 
-**Note**: The scripts and examples provided here were tested on a VM running **Ubuntu 16.04.1 32 bit** however they suppose to work on any Debian distribution.
 
-#General Notes -- Getting Started
+**Note**: 
+> The scripts and examples provided here were tested on a VM running **Ubuntu 16.04.1 32 bit** and MacOS Sierrahowever they suppose to work on any *nix machine
 
-## Development Environment
+# Development Environment
+## Introduction
 It is important to have a stable development environment in order to use the development tools efficiently. My recommendation is to work with MacOS or any Debian distribution of Linux (eg. Ubuntu). If you are working under Microsoft Windows, I recommend you to download [VirtualBox](https://www.virtualbox.org) and the latest version of [Ubuntu](https://www.ubuntu.com/download/desktop) before starting any development.
 If you are working with Linux, you have the Aptitude package manager (apt-get) installed. In case you are working with a Mac, I would recommend you to install [HomeBrew](http://brew.sh). That way you want need to manually download and install each piece of software.
 
@@ -50,16 +51,18 @@ source ~/Desktop/zahnHackathon/bin/activate
 Notice that your command prompt now displays the environment name.
 In order to deactivate the environment just run `deactivate`
 
-## Install a Database
-For all the problems that you can choose from, a database is an essential part of the solution. My examples will use (MySQL)[https://www.mysql.com] but everything will work the same if you decide to use other flavors of SQL (PostgreSQL, SQLite, etc.)
+---
 
-#### Installation
+# Database
+For all the problems that you can choose from, a database is an essential part of the solution. My examples will use [MySQL](https://www.mysql.com) but everything will work the same if you decide to use other flavors of SQL (PostgreSQL, SQLite, etc.)
+
+### Installation
 - **Linux**- `sudo apt-get install mysql-server`
 - **Mac**- `brew install mysql`
 
 During the installation process you will need to type a password for MySQL root user
 
-#### Create Users and Databases
+### Create Users and Databases
 After installing MySQL we need to create users so we can use the database. First, launch MySQL as the root user:
 ```bash
 mysql -u root -p
@@ -75,7 +78,7 @@ exit
 ```
 Where you should replace `username` and `password` with your desired values.
 
-#### Test Your Database
+### Test Your Database
 To see that everything is working, run the following from your shell
 ```bash
 mysql -u username -p
@@ -83,7 +86,7 @@ mysql -u username -p
 
 After typing your password you should be in the Mysql shell.
 
-#### Communicating with Python
+### Communicating with Python
 In order to user MySQL in python, you must run the following from your shell
 ```bash
 # This will install the tools the build the next packages (linux users only)
@@ -94,14 +97,15 @@ pip install mysql-python
 ```
 
 
-## What's Next
+<!-- ## What's Next
 After setting up your environment, it is time to start tackle the problem you chose. Just navigate to one of the subdirectories and check out examples that are more specific to your problem.
+ -->
 
-
+---
 
 # Natural Language Processing Kit (NLTK)
 
-## Installation
+## Install NLTK
 [NLTK](http://www.nltk.org) can be install using `pip` by running
 ```bash
 pip install nltk
@@ -121,6 +125,7 @@ For Mac users, this command will open the following window:
 Just choose your desired packages
 
 The following list contains recommended packages:
+
 - Corpora
     + brown
     + twitter_samples
@@ -145,7 +150,7 @@ nltk.help.upenn_tagset()
 
 This will output a list with the POS and some examples.
 
-#### Examples
+## Examples
 ```python
 import nltk
 from nltk import word_tokenize, pos_tag
@@ -209,17 +214,17 @@ If we print the tags variable:
 
 The common thing for all the questions above are the words Apple and stock, which NLTK gave us without a lot of work.
 
-
+---
 
 # ChatBot
-[ChatterBot](http://chatterbot.readthedocs.io/en/stable/index.html) is a chatbot package written in python. It has capabilities of integrating with SQL and NoSQL databases and it's quite easy to use.
+[ChatterBot](http://chatterbot.readthedocs.io/en/stable/index.html) is a chatbot package written in python. It has capabilities of integrating with SQL and NoSQL databases and it's quite easy to use. It can integrate with [MongoDB](https://www.mongodb.com) (you can more about that in the [docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#mongo-database-adapter)) and also with [Django](https://www.djangoproject.com) (again, for specifications please take a look in the [docs](http://chatterbot.readthedocs.io/en/stable/django/index.html)).
 
 ## Installation
 ```
 pip install chatterbot
 ```
 
-
+## Usage
 To create a basic bot:
 ```python
 from chatterbot import ChatBot
@@ -250,7 +255,7 @@ print res
 # OUTPUT: I am doing well, how about you?
 ```
 
-The last response doesn't make sense. The training dataset if very short so we need to a more data so the chatbot will fit our purposes. We can use our own data for training. We can use a list where each item in the list is a possible response to its predecessor:
+The last response doesn't make sense. The training dataset if very short so we need to a more data so the ChatBot will fit our purposes. We can use our own data for training. We can use a list where each item in the list is a possible response to its predecessor:
 
 ```python
 from chatterbot import ListTrainer
@@ -267,9 +272,138 @@ You can also export your bot data to a file by running
 bot.trainer.export_for_training('myData.json')
 ```
 
+Note that the ChatBot will try to learn which response match to each request. You can disable the self learning by passing a `read_only=True` ([docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#read-only-mode) as an argument when you instantiate the bot. 
+
+To execute code using the chatbot, you can train it on a set of questions where the responses are function names to execute as a response to the question and render back the result.
+
+# Yahoo Finance
+For some of your projects, you will need to get some financial data. There are many APIs that provide this service however I found that it is very convenient to work with [Yahoo Query Language (YQL)](https://developer.yahoo.com/yql/). Of course, this is just a suggestion and you can work with whatever fits your needs.
+
+The [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) is a Python package that make it very easy to use this API and you do not need even to have a Yahoo account.
+
+## Installation
+```
+pip install yahoo-finance
+```
+
+## Usage
+```python
+from yahoo_finance import Share
+
+# Get data about Apple share
+apple = Share('AAPL')
+
+# Get the share price
+print apple.get_price()
+# OUTPUT: 116.16
+
+# Since data is changing constantly, you can refresh the share and get the new data
+share.refresh()
+print apple.get_price()
+# OUTPUT: 116.3811
+
+# You can access the full share dataset  
+print share.data_set
+
+'''
+{'AfterHoursChangeRealtime': None,
+ 'AnnualizedGain': None,
+ 'Ask': '116.3900',
+ 'AskRealtime': None,
+ 'AverageDailyVolume': '36323300',
+ 'Bid': '116.3800',
+ 'BidRealtime': None,
+ 'BookValue': '23.4630',
+ 'Change': '-0.9589',
+ 'ChangeFromFiftydayMovingAverage': '5.3621',
+ 'ChangeFromTwoHundreddayMovingAverage': '12.9191',
+ 'ChangeFromYearHigh': '-7.4389',
+ 'ChangeFromYearLow': '26.9111',
+ 'ChangePercentRealtime': None,
+ 'ChangeRealtime': None,
+ 'Change_PercentChange': '-0.9589 - -0.8172%',
+ 'ChangeinPercent': '-0.8172%',
+ 'Commission': None,
+ 'Currency': 'USD',
+ 'DaysHigh': '117.2800',
+ 'DaysLow': '115.7200',
+ 'DaysRange': '115.7200 - 117.2800',
+ 'DaysRangeRealtime': None,
+ 'DaysValueChange': None,
+ 'DaysValueChangeRealtime': None,
+ 'DividendPayDate': '8/11/2016',
+ 'DividendShare': '2.2800',
+ 'DividendYield': '2.0000',
+ 'EBITDA': '73.96B',
+ 'EPSEstimateCurrentYear': '8.2600',
+ 'EPSEstimateNextQuarter': '3.1700',
+ 'EPSEstimateNextYear': '8.9600',
+ 'EarningsShare': '8.5760',
+ 'ErrorIndicationreturnedforsymbolchangedinvalid': None,
+ 'ExDividendDate': '8/4/2016',
+ 'FiftydayMovingAverage': '111.0190',
+ 'HighLimit': None,
+ 'HoldingsGain': None,
+ 'HoldingsGainPercent': None,
+ 'HoldingsGainPercentRealtime': None,
+ 'HoldingsGainRealtime': None,
+ 'HoldingsValue': None,
+ 'HoldingsValueRealtime': None,
+ 'LastTradeDate': '10/13/2016',
+ u'LastTradeDateTimeUTC': '2016-10-13 15:24:00 UTC+0000',
+ 'LastTradePriceOnly': '116.3811',
+ 'LastTradeRealtimeWithTime': None,
+ 'LastTradeTime': '11:24am',
+ 'LastTradeWithTime': '11:24am - <b>116.3811</b>',
+ 'LowLimit': None,
+ 'MarketCapRealtime': None,
+ 'MarketCapitalization': '627.11B',
+ 'MoreInfo': None,
+ 'Name': 'Apple Inc.',
+ 'Notes': None,
+ 'OneyrTargetPrice': '126.1100',
+ 'Open': '116.7900',
+ 'OrderBookRealtime': None,
+ 'PEGRatio': '1.7500',
+ 'PERatio': '13.5706',
+ 'PERatioRealtime': None,
+ 'PercebtChangeFromYearHigh': '-6.0078%',
+ 'PercentChange': '-0.8172%',
+ 'PercentChangeFromFiftydayMovingAverage': '+4.8299%',
+ 'PercentChangeFromTwoHundreddayMovingAverage': '+12.4868%',
+ 'PercentChangeFromYearLow': '+30.0784%',
+ 'PreviousClose': '117.3400',
+ 'PriceBook': '5.0011',
+ 'PriceEPSEstimateCurrentYear': '14.0897',
+ 'PriceEPSEstimateNextYear': '12.9890',
+ 'PricePaid': None,
+ 'PriceSales': '2.8702',
+ 'SharesOwned': None,
+ 'ShortRatio': '1.5900',
+ 'StockExchange': 'NMS',
+ 'Symbol': 'AAPL',
+ 'TickerTrend': None,
+ 'TradeDate': None,
+ 'TwoHundreddayMovingAverage': '103.4620',
+ 'Volume': '17280203',
+ 'YearHigh': '123.8200',
+ 'YearLow': '89.4700',
+ 'YearRange': '89.4700 - 123.8200',
+ 'symbol': 'AAPL'}
+'''
 
 
+# Or just to access several data attributes
+# For example, getting the price and currency
+print "{} {}".format(share.get_price(), share.data_set['Currency'])
 
+# OUTPUT: 116.3811 USD
+```
+
+# Web Servers
+
+In order make all your project components to work in harmony, you will need to use a web server (unless you want to create a stand-alone project). Below are two examples of web server frameworks in Python (of course there are many more but I cannot cover everything).
+The two examples will have the same functionality
 
 
 
