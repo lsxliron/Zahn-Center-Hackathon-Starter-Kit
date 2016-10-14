@@ -33,7 +33,7 @@ git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 ```
 - `cd` to the `flask_example` directory and run
 ```bash
-pip install -r requirements
+pip install -r requirements.txt
 ```
 - Once the installation is done, open MySQL console and create a new database called `example`
 ```sql

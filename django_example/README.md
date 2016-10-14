@@ -39,7 +39,7 @@ git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 ```
 - `cd` to the `flask_example` directory and run
 ```bash
-pip install -r requirements
+pip install -r requirements.txt
 ```
 - cd to `django_example` directory and run the following commands
 ```bash

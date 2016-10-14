@@ -1,8 +1,6 @@
 # Zahn Center Hackathon Starter Kit
 
-Welcome to the *Zahn Center* Hackathon. This starter kit is intended to introduce you to same frameworks that might be helpful for you in order to solve your problem. Obviously, I won't be able to cover the full usage of each package and thus next to each package or framework name, you will find a link to the project website and a link to the documentation. 
-
-This repository contains 3 sub directories, each one has a description and some examples of the tools that might be useful to solve this particular problem. 
+Welcome to the *Zahn Center* Hackathon. This starter kit is intended to introduce you to some frameworks that might be helpful for you in order to solve your problem. Obviously, I won't be able to cover the full usage of each package and thus next to each package or framework name, you will find a link to the project website and documentation. 
 
 Note that all the packages in this starter kit are only a suggestion and you are not restricted to them only. Feel free to use whatever will help you.
 
