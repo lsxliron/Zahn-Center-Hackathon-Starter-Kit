@@ -78,7 +78,7 @@ python manage.py startapp app_name
 In the new app that we created in the last command, there is a file called `views.py` which will contain all our app logic. 
 Notice that the `getAnswer` function function returns a `JSON` response however `getTickerHistory` function return a template with some extra variables. Those variables will be available to us in the HTML file as we will see in the next sections.
 The syntax for returning a template is 
-```
+```python
 return render(request, 'templates/example/template_name.html', {'foo':'bar', 'fiz': 'buz'})
 ```
 The dictionary in the third argument may have complex values like lists and dictionaries. 
@@ -100,7 +100,7 @@ app_name/templates/app_name/index.html
 ```
 
 Notice that beside `base.html`, each template in the `example/templates/example` folder, has the following structure:
-```
+```html
 {% extends "main/base.html" %}
 
 {% block content %}
@@ -161,7 +161,7 @@ class Ticker(models.Model):
 You can find more information on Django data types [here](https://docs.djangoproject.com/en/1.10/ref/models/fields/)
 
 The following is a very basic usage
-```
+```python
 class Foo(db.Model):
     id = models.AutoField(primary_key=True)
     bar = models.CharField(max_length=10)
