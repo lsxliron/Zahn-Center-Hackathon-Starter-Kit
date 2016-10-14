@@ -11,14 +11,10 @@ Liron Shimrony
 
 
 **Note**: 
-> The scripts and examples provided here were tested on a VM running **Ubuntu 16.04.1 32 bit** and MacOS Sierrahowever they suppose to work on any *nix machine
+> The scripts and examples provided here were tested on a VM running **Ubuntu 16.04.1 32 bit** and MacOS Sierra however they suppose to work on any *nix machine
 
 
 ##Table of Contents
-
-
-
-
 * [Development Environment](#development-environment)
     * [Introduction](#introduction)
     * [Installing PIP](#installing-pip)
@@ -45,7 +41,7 @@ Liron Shimrony
 
 # Development Environment
 ## Introduction
-It is important to have a stable development environment in order to use the development tools efficiently. My recommendation is to work with MacOS or any Debian distribution of Linux (eg. Ubuntu). If you are working under Microsoft Windows, I recommend you to download [VirtualBox](https://www.virtualbox.org) and the latest version of [Ubuntu](https://www.ubuntu.com/download/desktop) before starting any development.
+It is important to have a stable development environment in order to use the development tools efficiently. My recommendation is to work with MacOS or any Debian distribution of Linux (e.g. Ubuntu). If you are working under Microsoft Windows, I recommend you to download [VirtualBox](https://www.virtualbox.org) and the latest version of [Ubuntu](https://www.ubuntu.com/download/desktop) before starting any development.
 If you are working with Linux, you have the Aptitude package manager (apt-get) installed. In case you are working with a Mac, I would recommend you to install [HomeBrew](http://brew.sh). That way you want need to manually download and install each piece of software.
 
 ## Installing PIP
@@ -64,7 +60,10 @@ After we installed VirtualEnv, navigate to your working directory (really doesn'
 virtualenv [env_name] --no-site-packages
 ```
 
-Of course, replace `env_name` with the name you want to give your environment. For example: `virtualenv zahnHackathon --no-site-packages`.
+This command will create a directory called `env_name` which will be your virtual environment. Of course, replace `env_name` with the name you want to give your environment. For example: 
+```bash
+virtualenv zahnHackathon --no-site-packages
+```
 
 After the environment is created, we need to activate it by running:
 ```bash
@@ -76,10 +75,10 @@ If you created your environment on your desktop, it will be something like
 source ~/Desktop/zahnHackathon/bin/activate
 ```
 
-Notice that your command prompt now displays the environment name.
+Notice that your command prompt now displays the environment name in parenthesis.
 In order to deactivate the environment just run `deactivate`
 
----
+Now, when you have everything in place, we can start installing different packages that are required. 
 
 # Database
 For all the problems that you can choose from, a database is an essential part of the solution. My examples will use [MySQL](https://www.mysql.com) but everything will work the same if you decide to use other flavors of SQL (PostgreSQL, SQLite, etc.)
@@ -90,8 +89,13 @@ For all the problems that you can choose from, a database is an essential part o
 
 During the installation process you will need to type a password for MySQL root user
 
+The last step is to activate the database service:
+
+- If you are on Linux, you can do it by running `sudo service mysql start`
+- For Mac users, run `mysql.server start`
+
 ### Create Users and Databases
-After installing MySQL we need to create users so we can use the database. First, launch MySQL as the root user:
+After installing MySQL we need to create users so we can use the database. First, launch MySQL console as the root user:
 ```bash
 mysql -u root -p
 ```
@@ -100,32 +104,34 @@ After typing your password, create a new user:
 
 ```sql
 CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'username'@'localhost'
+GRANT ALL PRIVILEGES ON * . * TO 'username'@'localhost';
 FLUSH PRIVILEGES;
-exit
+exit;
 ```
 Where you should replace `username` and `password` with your desired values.
 
 ### Test Your Database
-To see that everything is working, run the following from your shell
+To see that everything is working, run the following from your shell (replace `username` with the value you chose when you created the user)
 ```bash
 mysql -u username -p
 ```
 
-After typing your password you should be in the Mysql shell.
+After typing your password you should be in the MySQL console.
+
+If you managed to get to the console, your database is all set.
 
 ### Communicating with Python
-In order to user MySQL in python, you must run the following from your shell
+In order to use MySQL in python, you must run the following from your shell
 ```bash
 # This will install the tools the build the next packages (linux users only)
 sudo apt-get install libmysqlclient-dev
 
-# Install the mysql python adapter
+# Install the MySQL python adapter (make sure your virtual environment is activated)
 pip install mysql-python
 ```
 
 # Yahoo Finance
-For some of your projects, you will need to get some financial data. There are many APIs that provide this service however I found that it is very convenient to work with [Yahoo Query Language (YQL)](https://developer.yahoo.com/yql/). Of course, this is just a suggestion and you can work with whatever fits your needs.
+For some of your projects, you will need to get some financial data. There are many APIs that provide this service. However I found that it is very convenient to work with [Yahoo Query Language (YQL)](https://developer.yahoo.com/yql/). Of course, this is just a suggestion and you can work with whatever fits your needs.
 
 The [yahoo_finance](https://github.com/lukaszbanasiak/yahoo-finance) is a Python package that make it very easy to use this API and you do not need even to have a Yahoo account.
 
@@ -146,13 +152,14 @@ print apple.get_price()
 # OUTPUT: 116.16
 
 # Since data is changing constantly, you can refresh the share and get the new data
-share.refresh()
+apple.refresh()
 print apple.get_price()
 # OUTPUT: 116.3811
 
 # You can access the full share dataset  
-print share.data_set
+print apple.data_set
 
+# OUTPUT:
 '''
 {'AfterHoursChangeRealtime': None,
  'AnnualizedGain': None,
@@ -243,17 +250,21 @@ print share.data_set
 
 # Or just to access several data attributes
 # For example, getting the price and currency
-print "{} {}".format(share.get_price(), share.data_set['Currency'])
+print "{} {}".format(apple.get_price(), apple.data_set['Currency'])
 
 # OUTPUT: 116.3811 USD
 ```
 
 # Web Servers
-In order make all your project components to work in harmony, you will need to use a web server (unless you want to create a stand-alone project). Pleae take a look on the two examples supplied (Django and Flask).
-The two examples will have the same functionality of fetching a stock price and displaying as an HTML as well as storing the prices in a database. Another functionality is showing a table with the previous prices. 
+In order to make all your project components to work in harmony, you will need to use a web server (unless you want to create a stand-alone project). Please take a look on the two examples supplied:
+
+- [Django example](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/django_example)
+- [Flask Example](https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit/tree/master/flask_example)
+
+The two examples have the same functionality of fetching a stock price and displaying it in HTML page, as well as storing the prices in a database. Another functionality is showing a table with the previous prices. 
 
 # ChatBot
-[ChatterBot](http://chatterbot.readthedocs.io/en/stable/index.html) is a chatbot package written in python. It has capabilities of integrating with SQL and NoSQL databases and it's quite easy to use. It can integrate with [MongoDB](https://www.mongodb.com) (you can more about that in the [docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#mongo-database-adapter)) and also with [Django](https://www.djangoproject.com) (again, for specifications please take a look in the [docs](http://chatterbot.readthedocs.io/en/stable/django/index.html)).
+[ChatterBot](http://chatterbot.readthedocs.io/en/stable/index.html) is a chat bot package written in python. It has capabilities of integrating with SQL and NoSQL databases and it's quite easy to use. It can integrate with [MongoDB](https://www.mongodb.com) (you can read more about that in the [docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#mongo-database-adapter)) and also with [Django](https://www.djangoproject.com) (again, for specifications please take a look in the [docs](http://chatterbot.readthedocs.io/en/stable/django/index.html)).
 
 ## Installation
 ```
@@ -291,10 +302,10 @@ print res
 # OUTPUT: I am doing well, how about you?
 ```
 
-The last response doesn't make sense. The training dataset if very short so we need to a more data so the ChatBot will fit our purposes. We can use our own data for training. We can use a list where each item in the list is a possible response to its predecessor:
+The last response doesn't make sense. The training dataset if very short and thus we need to add more data so the ChatBot will fit our purposes. We can use our own data for training. We can use a list where each item in the list is a possible response to its predecessor:
 
 ```python
-from chatterbot import ListTrainer
+from chatterbot.trainers import ListTrainer
 bot.set_trainer(ListTrainer)
 
 bot.train(["Good night", "Sweet dreams"])
@@ -308,7 +319,7 @@ You can also export your bot data to a file by running
 bot.trainer.export_for_training('myData.json')
 ```
 
-Note that the ChatBot will try to learn which response match to each request. You can disable the self learning by passing a `read_only=True` ([docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#read-only-mode) as an argument when you instantiate the bot. 
+Note that the ChatBot will try to learn which response match to each request. You can disable the self learning by passing a `read_only=True` ([docs](http://chatterbot.readthedocs.io/en/stable/adapters/storage.html#read-only-mode)) as an argument when you instantiate the bot. 
 
 To execute code using the chatbot, you can train it on a set of questions where the responses are function names to execute as a response to the question and render back the result.
 
@@ -350,7 +361,8 @@ This starter kit is way too short to describe all the capebilities of NLTK. You 
 
 When parsing a sentence, it is important to understand what are the verbs, nouns, adjectives, etc. Doing so, we can actually understand what the user is asking.
 
-The first think we should do with a text input is to strip it from all the punctuation and tokenize it (just create a list of words). After doing that, we can start finding the POS (parts of speech).
+The first thing we should do with a text input is to strip it from all the punctuation and tokenize it (just create a list of words). After doing that, we can start finding the POS (parts of speech).
+
 You can find the full list of POS by running the following command
 ```python
 import nltk
@@ -375,9 +387,13 @@ text = "Hello, how are you?"
 
 # Remove all punctuation
 stripped_text = ''.join([char if char in valid_letters else '' for char in text])
+print stripped_text
+# OUTPUT: 'Hello how are you'
 
 # Tokenize
 tokens = word_tokenize(stripped_text)
+print tokens
+# OUTPUT:  ['Hello', 'how', 'are', 'you']
 
 # Get POS
 tags = pos_tag(tokens)
@@ -424,7 +440,7 @@ If we print the tags variable:
 The common thing for all the questions above are the words Apple and stock, which NLTK gave us without a lot of work.
 
 # Sending Emails
-If you would like to send an email from within the web app, you can do it easily by using [Flask-Mail](https://pythonhosted.org/Flask-Mail/) (for Flask users) or the Django [send_mail](https://docs.djangoproject.com/en/1.10/topics/email/) function (for Django users)
+If you would like to send an email from within the web app, you can do it easily by using [Flask-Mail](https://pythonhosted.org/Flask-Mail/) package (for Flask users) or the Django [send_mail](https://docs.djangoproject.com/en/1.10/topics/email/) function (for Django users)
 
 # More libraries that might help
 - [Numpy](http://www.numpy.org) - Scientific computing
@@ -432,6 +448,6 @@ If you would like to send an email from within the web app, you can do it easily
 - [pandas](http://pandas.pydata.org) - Data analysis 
 - [matplotlib](http://matplotlib.org) - Data visualization 
 - [seaborn](https://seaborn.github.io) - Data visualization (easy to use)
-- [reportlab](http://www.reportlab.com/documentation/) - PDF generation
+- [reportlab](http://www.reportlab.com/documentation/) - Generate PDFs
 
 <!-- TODO: sudo apt-get install libmysqlclient-dev-->

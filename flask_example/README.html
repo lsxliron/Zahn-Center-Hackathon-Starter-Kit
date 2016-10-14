@@ -1014,7 +1014,7 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>README</title></head><body><article class="markdown-body"><h1 id="flask-example"><a name="user-content-flask-example" href="#flask-example" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Flask Example</h1>
+</style><title>README</title></head><body><article class="markdown-body"><h1 id="flask-example-project"><a name="user-content-flask-example-project" href="#flask-example-project" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Flask Example Project</h1>
 <h2 id="table-of-contents"><a name="user-content-table-of-contents" href="#table-of-contents" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Table of Contents</h2>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
@@ -1048,7 +1048,7 @@ The second view of this app shows the IBM prices over time as each time a query 
 <pre><code class="bash">git clone https://github.com/lsxliron/Zahn-Center-Hackathon-Starter-Kit.git
 </code></pre></li>
 <li><code>cd</code> to the <code>flask_example</code> directory and run<br />
-<pre><code class="bash">pip install -r requirements
+<pre><code class="bash">pip install -r requirements.txt
 </code></pre></li>
 <li>Once the installation is done, open MySQL console and create a new database called <code>example</code><br />
 <pre><code class="sql">CREATE DATABASE example;
@@ -1088,12 +1088,12 @@ The second view of this app shows the IBM prices over time as each time a query 
 <h2 id="implementation-details"><a name="user-content-implementation-details" href="#implementation-details" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Implementation Details</h2>
 <p><strong>Note:</strong> If you read this part I assume you already went over the source code. There are some useful comments there.</p>
 <h3 id="project-initialization"><a name="user-content-project-initialization" href="#project-initialization" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Project Initialization</h3>
-<p>The <code>__init__</code> file contains the code that initialize the project. Make sure you read it since it is well documented and explains how to connect the app to your database.<br />
-For your convenience, create a <code>runserver.py</code> file in the root directory of the project with the following code<br />
+<p>The <code>__init__</code> file contains the code that initialize the project. Make sure you read it since it is well documented and explains how to connect the app to your database.</p>
+<p>For your own convenience, create a <code>runserver.py</code> file in the root directory of the project with the following code<br />
 <pre><code class="python">from app import app
 app.run(debug=True, host='0.0.0.0', port=5000)
-</code></pre><br />
-This will allow you to update your <code>__init__.py</code> file while the app is running and will also resolve many path issues. Of course, you can change the function arguments as you want. </p>
+</code></pre></p>
+<p>This will allow you to update your <code>__init__.py</code> file while the app is running and will also resolve many path issues. Of course, you can change the function arguments as you want. </p>
 <h3 id="the-views"><a name="user-content-the-views" href="#the-views" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>The Views</h3>
 <p>This file contains the project logic. Notice that flask uses <em>Blueprints</em>. <br />
 <pre><code class="python">example_blueprint = Blueprint(__name__, &quot;example&quot;)

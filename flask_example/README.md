@@ -1,4 +1,4 @@
-# Flask Example
+# Flask Example Project
 
 ## Table of Contents
 

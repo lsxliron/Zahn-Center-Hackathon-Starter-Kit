@@ -1,4 +1,4 @@
-# Django
+# Django Example Project
 
 ##Table of Contents
 
