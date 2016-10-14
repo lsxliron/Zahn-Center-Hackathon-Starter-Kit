@@ -6,4 +6,4 @@ class BaseConfig(object):
     STATIC_FOLDER = 'static'
     # Connection string for the databse.
     # Structure:: mysql://username:password:host/db_name
-    SQLALCHEMY_DATABASE_URI = "mysql://dev:abcd1234@localhost/example"
+    SQLALCHEMY_DATABASE_URI = "mysql://dev:abcd1234@localhost/flask_example"
