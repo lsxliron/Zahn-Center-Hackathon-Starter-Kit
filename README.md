@@ -426,7 +426,7 @@ If we print the tags variable:
 The common thing for all the questions above are the words Apple and stock, which NLTK gave us without a lot of work.
 
 # Sending Emails
-If you would like to send an email from within the web app, you can do it easily by using [Flask-Mail](https://pythonhosted.org/Flask-Mail/)(for Flask users) or the Django [send_mail](https://docs.djangoproject.com/en/1.10/topics/email/) function (for Django users)
+If you would like to send an email from within the web app, you can do it easily by using [Flask-Mail](https://pythonhosted.org/Flask-Mail/) (for Flask users) or the Django [send_mail](https://docs.djangoproject.com/en/1.10/topics/email/) function (for Django users)
 
 # More libraries that might help
 - [Numpy](http://www.numpy.org) - Scientific computing
