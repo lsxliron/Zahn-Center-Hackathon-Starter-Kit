@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <h1> History for IBM Share</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <table class="table table-hover table-striped">
+        <thead>
+          <th> Symbol </th>
+          <th> Price </th>
+          <th> Timestamp </th>
+        </thead>
+        <tbody>
+          {% for t in tickers %}
+            <tr>
+              <td>{{t.symbol}}</td>
+              <td>{{t.price}}</td>
+              <td>{{t.timestamp}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

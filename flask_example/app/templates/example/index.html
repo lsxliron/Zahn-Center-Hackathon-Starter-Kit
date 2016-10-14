@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+
+  <div class="container">
+    
+    <div class="row">
+      <h1> This is a Flask example app </h1>
+    </div>
+
+    <div class="row">
+      <h4 style="margin-bottom:20px"> You can find more informatino about Flask <a href="http://flask.pocoo.org">here</a></h4>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-6">
+        <select id="ticker" class="form-control">
+           <option value="title" disabled selected>Select...</option>
+           <option value="AAPL">AAPL</option>
+           <option value="MSFT">MSFT</option>
+           <option value="GOOGL">GOOGL</option>
+         </select>
+      </div>
+      
+      <div class="col-xs-2 col-xs-offset-1">
+        <button id="submit_button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2> Reuslt: </h2>
+    </div>
+    
+    <div class="row">
+      <h3 style="margin-left:10px"id="answer"><br></h3>
+    </div>
+      <hr />
+    <div class="row">
+      <h2> Auto Update Example (updates every second): </h2>
+    </div>
+    <div class="row">
+      <h3 style="margin-left:10px" id="autoUpdate"></h3>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}
