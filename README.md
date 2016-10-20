@@ -36,8 +36,8 @@ Liron Shimrony
     * [Install NLTK](#install-nltk)
     * [Using NLTK](#using-nltk)
     * [Examples](#examples)
-  * [Sending emails (Mail Filter Project)](#sending-emails)
-  * [More libraries that might help](#more-libraries-that-might-help)
+* [Sending emails (Mail Filter Project)](#sending-emails)
+* [More libraries that might help](#more-libraries-that-might-help)
 
 # Development Environment
 ## Introduction
