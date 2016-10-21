@@ -129,6 +129,9 @@ sudo apt-get install libmysqlclient-dev
 # Install the MySQL python adapter (make sure your virtual environment is activated)
 pip install mysql-python
 ```
+# SEC Financial Statement Data Sets
+You can download SEC Financial Statement Data Sets from https://www.sec.gov/dera/data/financial-statement-data-sets.html
+
 
 # Yahoo Finance
 For some of your projects, you will need to get some financial data. There are many APIs that provide this service. However I found that it is very convenient to work with [Yahoo Query Language (YQL)](https://developer.yahoo.com/yql/). Of course, this is just a suggestion and you can work with whatever fits your needs.
