@@ -132,6 +132,32 @@ pip install mysql-python
 # SEC Financial Statement Data Sets
 You can download SEC Financial Statement Data Sets from https://www.sec.gov/dera/data/financial-statement-data-sets.html
 
+The data is in `tsv` (tab separated values) format.
+
+The first line of each file is going to be the headers. All the lines that come afterwards are the actual data
+
+## How to read this file:
+
+Just use python built in `csv` module
+
+```python
+import csv
+
+# Open the file
+f = open('filename.txt', 'r')
+
+# Create a reader object
+reader = csv.reader(f)
+
+# Iterate and print the rows
+for row in reader:
+    print row
+    
+
+# Close the file when done
+f.close()
+
+```
 
 # Yahoo Finance
 For some of your projects, you will need to get some financial data. There are many APIs that provide this service. However I found that it is very convenient to work with [Yahoo Query Language (YQL)](https://developer.yahoo.com/yql/). Of course, this is just a suggestion and you can work with whatever fits your needs.
